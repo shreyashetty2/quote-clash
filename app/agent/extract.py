@@ -22,7 +22,8 @@ PROMPT = """You extract structured data from a vendor quote. Rules:
 - line_items: quantity is the units billed as stated (25 users, 156 visits, 1,920 meals); use 1 for a flat rate.
   unit_price is the price per billing unit as a plain number (no $ or commas).
 - fees: extra charges such as setup, onboarding, deep clean, delivery, surcharges. recurring=false for one time.
-  Do not repeat line items as fees.
+  Do not repeat line items as fees. For a fee charged per occurrence, set billing_unit (e.g. lunch) and quantity
+  (times charged, if stated); for a monthly fee set billing_unit to month.
 - tax.rate_percent only if a tax rate is stated; "prices exclude tax" is not a rate.
 - auto_renewal: true if the quote says it renews automatically, false only if it explicitly says it does not renew,
   otherwise null.
