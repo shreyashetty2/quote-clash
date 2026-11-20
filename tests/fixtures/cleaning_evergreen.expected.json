@@ -1,0 +1,73 @@
+{
+  "file": "cleaning_evergreen.pdf",
+  "category": "office_cleaning",
+  "vendor": "Evergreen Janitorial",
+  "line_items": [
+    {
+      "description": "Annual janitorial service (3 visits per week)",
+      "quantity": 1,
+      "unit_price": 24000.0,
+      "billing_unit": "year",
+      "annual_multiplier": 1,
+      "source_snippet": "Annual janitorial service, 3 visits per week - $24,000.00 per year, billed annually"
+    },
+    {
+      "description": "Window cleaning (quarterly)",
+      "quantity": 1,
+      "unit_price": 1600.0,
+      "billing_unit": "year",
+      "annual_multiplier": 1,
+      "source_snippet": "Quarterly window cleaning - $1,600.00 per year"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Fuel and equipment surcharge",
+      "amount": 95.0,
+      "recurring": true,
+      "annual_multiplier": 12,
+      "hidden_in_fine_print": true,
+      "source_snippet": "A fuel and equipment surcharge of $95.00 per month applies."
+    }
+  ],
+  "tax": {
+    "rate_percent": null,
+    "source_snippet": null,
+    "status": "not found"
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "Contract term: 12 months."
+    },
+    "auto_renewal": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "renewal_notice_days": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "price_escalator_percent": {
+      "value": 5.0,
+      "source_snippet": "Service rates increase 5% on each anniversary of the start date."
+    },
+    "late_fee_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "payment_terms_days": {
+      "value": 30,
+      "source_snippet": "Payment due 30 days after invoice date."
+    }
+  },
+  "expected_first_year_pretax_total": 26740.0,
+  "traps": [
+    "price_escalator",
+    "hidden_recurring_fee",
+    "annual_billing_units"
+  ]
+}
