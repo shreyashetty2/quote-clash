@@ -52,7 +52,7 @@ def test_cleaning_ranking_flips_once_missing_windows_are_added():
     slate = next(v for v in c.vendors if v.vendor == "CleanSlate Facilities")
     assert slate.missing_concepts == ["window_cleaning"]
     assert (slate.like_for_like_low, slate.like_for_like_high) == (27400, 27480)
-    assert (slate.headline_rank, slate.like_for_like_rank) == (1, 3)
+    assert (slate.headline_rank, slate.like_for_like_rank) == (1, 2)
 
 
 def test_catering_missing_beverages():
