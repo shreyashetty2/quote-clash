@@ -1,0 +1,10 @@
+CLAUDE.md
+PRD.md
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Secrets
+.env
