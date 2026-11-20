@@ -27,6 +27,8 @@
       "recurring": true,
       "annual_multiplier": 48,
       "hidden_in_fine_print": false,
+      "billing_unit": "lunch",
+      "quantity": 48,
       "source_snippet": "Delivery fee: $75.00 per lunch (48 lunches)."
     }
   ],
