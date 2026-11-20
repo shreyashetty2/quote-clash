@@ -58,13 +58,15 @@ def item(description, quantity, unit_price, billing_unit, multiplier, text):
     }
 
 
-def fee(name, amount, recurring, multiplier, text, hidden=False):
+def fee(name, amount, recurring, multiplier, text, hidden=False, billing_unit=None, quantity=None):
     return {
         "name": name,
         "amount": amount,
         "recurring": recurring,
         "annual_multiplier": multiplier,
         "hidden_in_fine_print": hidden,
+        "billing_unit": billing_unit,
+        "quantity": quantity,
         "source_snippet": text,
     }
 
@@ -215,7 +217,7 @@ QUOTES = [
         "fees": [
             fee("Fuel and equipment surcharge", 95.00, True, 12,
                 "A fuel and equipment surcharge of $95.00 per month applies.",
-                hidden=True),
+                hidden=True, billing_unit="month"),
         ],
         "tax": None,
         "terms": {
@@ -242,7 +244,7 @@ QUOTES = [
         "fees": [
             fee("Delivery fee", 75.00, True, 48,
                 "Delivery fee: $75.00 per lunch (48 lunches).",
-                hidden=False),
+                hidden=False, billing_unit="lunch", quantity=48),
         ],
         "tax": (8.875, "NYC sales tax of 8.875% applies to food and beverage."),
         "terms": {
