@@ -1,0 +1,72 @@
+{
+  "file": "catering_tableandfork.pdf",
+  "category": "catering",
+  "vendor": "Table & Fork Catering",
+  "line_items": [
+    {
+      "description": "Weekly team lunch",
+      "quantity": 1920,
+      "unit_price": 18.5,
+      "billing_unit": "person per lunch",
+      "annual_multiplier": 1,
+      "source_snippet": "Team lunch, 40 people x 48 lunches (1,920 meals) - $18.50 per person per lunch"
+    },
+    {
+      "description": "Coffee and beverage service",
+      "quantity": 1920,
+      "unit_price": 2.5,
+      "billing_unit": "person per lunch",
+      "annual_multiplier": 1,
+      "source_snippet": "Coffee and beverage service - $2.50 per person per lunch (1,920 servings)"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Delivery fee",
+      "amount": 75.0,
+      "recurring": true,
+      "annual_multiplier": 48,
+      "hidden_in_fine_print": false,
+      "source_snippet": "Delivery fee: $75.00 per lunch (48 lunches)."
+    }
+  ],
+  "tax": {
+    "rate_percent": 8.875,
+    "source_snippet": "NYC sales tax of 8.875% applies to food and beverage."
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "Catering agreement term: 12 months."
+    },
+    "auto_renewal": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "renewal_notice_days": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "price_escalator_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "late_fee_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "payment_terms_days": {
+      "value": 30,
+      "source_snippet": "Payment is due net 30."
+    }
+  },
+  "expected_first_year_pretax_total": 43920.0,
+  "traps": [
+    "per_person_per_event_units",
+    "recurring_delivery_fee"
+  ]
+}
