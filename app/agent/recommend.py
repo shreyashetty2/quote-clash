@@ -32,23 +32,30 @@ def recommend(comparison: Comparison, flags: list[RiskFlag]) -> Recommendation:
     pick = min(contenders, key=lambda v: (len(high[v.vendor]), _mid(v)))
     others = sorted((v for v in vendors if v is not pick), key=_mid)
 
+    labels = {m.concept: m.label.lower() for m in comparison.missing}
+
+    def names(v) -> str:
+        return ", ".join(labels.get(c, c) for c in v.missing_concepts)
+
     reasoning = []
     lo, hi = pick.like_for_like_low, pick.like_for_like_high
     span = money(lo) if lo == hi else f"{money(lo)} to {money(hi)}"
-    if len(contenders) == 1:
+    rivals = [v.vendor for v in contenders if v is not pick]
+    if not rivals:
         reasoning.append(f"{pick.vendor} has the lowest first-year cost for the same scope: {span}.")
     else:
+        fewer = len(high[pick.vendor]) < min(len(high[v.vendor]) for v in contenders if v is not pick)
+        win = "fewer high-severity risks" if fewer else "the lowest cost of the group"
         reasoning.append(
-            f"{pick.vendor} is within {NEAR_TIE:.0%} of the lowest cost ({span}) and has the fewest "
-            f"high-severity risks ({len(high[pick.vendor])}), so it is the safer choice."
+            f"{pick.vendor} ({span} for the same scope) costs about the same as {', '.join(rivals)} "
+            f"(within {NEAR_TIE:.0%}) and wins on {win}."
         )
     if pick.missing_concepts:
-        reasoning.append(f"Its quote leaves out {', '.join(pick.missing_concepts)}; the range above adds that back.")
+        reasoning.append(f"Its quote leaves out {names(pick)}; the range above adds that back.")
 
     if comparison.cheapest_headline != pick.vendor:
         cheap = next(v for v in vendors if v.vendor == comparison.cheapest_headline)
-        why = (f"it omits {', '.join(cheap.missing_concepts)}" if cheap.missing_concepts
-               else "of its terms and risk flags")
+        why = f"it omits {names(cheap)}" if cheap.missing_concepts else "of its terms and risk flags"
         reasoning.append(
             f"{cheap.vendor} has the lowest headline price ({money(cheap.year1_total)}) but "
             f"{why}, so it is not the best value."
