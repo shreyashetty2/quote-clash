@@ -36,7 +36,13 @@ def test_cleaning_does_not_recommend_cheapest_headline():
     rec, comp = run(SETS["cleaning"])
     assert comp.cheapest_headline == "CleanSlate Facilities"
     assert rec.vendor == "Evergreen Janitorial"
-    assert any("CleanSlate" in r and "window_cleaning" in r for r in rec.reasoning)
+    assert any("CleanSlate" in r and "window cleaning" in r for r in rec.reasoning)
+
+
+def test_near_tie_wording_names_the_rival_and_the_reason():
+    rec, _ = run(SETS["cleaning"])
+    first = rec.reasoning[0]
+    assert "CleanSlate Facilities" in first and "within 3%" in first and "lowest cost of the group" in first
 
 
 def test_catering_harvest_wins():
