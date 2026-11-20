@@ -182,3 +182,47 @@ class LLMRiskFlag(BaseModel):
 
 class LLMRiskResult(BaseModel):
     flags: list[LLMRiskFlag] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------- recommend
+
+class Alternative(BaseModel):
+    vendor: str
+    like_for_like_mid: float
+    more_than_recommended: float = Field(description="Positive means this vendor costs more than the recommended one.")
+
+
+class Recommendation(BaseModel):
+    vendor: str
+    runner_up: str | None = None
+    year1_total: float
+    like_for_like_low: float
+    like_for_like_high: float
+    reasoning: list[str]
+    caveats: list[str] = Field(default_factory=list)
+    high_severity_flags: list[str] = Field(default_factory=list)
+    most_expensive_vendor: str
+    savings_vs_most_expensive: float = Field(description="Mid-point like-for-like difference, never below 0.")
+    savings_percent: float
+    alternatives: list[Alternative]
+
+
+# ---------------------------------------------------------------- draft_email
+
+class EmailDraft(BaseModel):
+    subject: str
+    body: str
+    source: Literal["llm", "template"] = "template"
+
+
+# ---------------------------------------------------------------- result
+
+class Result(BaseModel):
+    quotes: list[Quote]
+    normalized: list[NormalizedQuote]
+    comparison: Comparison
+    flags: list[RiskFlag]
+    recommendation: Recommendation
+    email: EmailDraft
+    warnings: list[str] = Field(default_factory=list)
+    time_to_results_ms: int = 0
