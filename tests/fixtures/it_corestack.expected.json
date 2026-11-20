@@ -1,0 +1,63 @@
+{
+  "file": "it_corestack.pdf",
+  "category": "it_support",
+  "vendor": "CoreStack Solutions",
+  "line_items": [
+    {
+      "description": "Helpdesk support",
+      "quantity": 25,
+      "unit_price": 38.0,
+      "billing_unit": "user per month",
+      "annual_multiplier": 12,
+      "source_snippet": "Helpdesk support - 25 users at $38.00 per user per month"
+    },
+    {
+      "description": "Server monitoring",
+      "quantity": 1,
+      "unit_price": 300.0,
+      "billing_unit": "month",
+      "annual_multiplier": 12,
+      "source_snippet": "Server monitoring - flat $300.00 per month"
+    }
+  ],
+  "fees": [],
+  "tax": {
+    "rate_percent": null,
+    "source_snippet": null,
+    "status": "not found"
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "Contract length is 12 months from the start date."
+    },
+    "auto_renewal": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "renewal_notice_days": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "price_escalator_percent": {
+      "value": 6.0,
+      "source_snippet": "All recurring prices increase by 6% at the start of each contract year after the first."
+    },
+    "late_fee_percent": {
+      "value": 1.5,
+      "source_snippet": "Late payments accrue a fee of 1.5% per month."
+    },
+    "payment_terms_days": {
+      "value": 30,
+      "source_snippet": "Payment is due within 30 days of invoice."
+    }
+  },
+  "expected_first_year_pretax_total": 15000.0,
+  "traps": [
+    "missing_item_backup",
+    "price_escalator",
+    "late_fee"
+  ]
+}
