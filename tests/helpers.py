@@ -45,3 +45,26 @@ def oracle_llm(expected: dict):
 def load_quote(stem: str) -> Quote:
     pdf = pdf_for(stem)
     return extract_quote(pdf_to_text(pdf), oracle_llm(load_expected(pdf)))
+
+
+def router_llm(stems, email_body=None, record=None):
+    """Fake LLM for the whole pipeline: answers each schema type; extraction picks the fixture by vendor name."""
+    from app.schemas import EmailDraft, LLMRiskResult, QuoteExtraction, UnitResolution
+
+    expected = {load_expected(pdf_for(s))["vendor"]: load_expected(pdf_for(s)) for s in stems}
+
+    def fn(prompt, schema):
+        if record is not None:
+            record.append(schema)
+        if schema is QuoteExtraction:
+            vendor = next(v for v in expected if v in prompt)
+            return oracle_llm(expected[vendor])(prompt, schema)
+        if schema is UnitResolution:
+            return UnitResolution()
+        if schema is LLMRiskResult:
+            return LLMRiskResult()
+        if schema is EmailDraft:
+            return EmailDraft(subject="Quote follow up", body=email_body or "Hello, thanks for the quote.")
+        raise AssertionError(schema)
+
+    return fn
