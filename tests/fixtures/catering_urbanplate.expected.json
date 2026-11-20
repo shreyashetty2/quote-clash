@@ -1,0 +1,55 @@
+{
+  "file": "catering_urbanplate.pdf",
+  "category": "catering",
+  "vendor": "Urban Plate Co.",
+  "line_items": [
+    {
+      "description": "Monthly lunch package (4 lunches for up to 40 people)",
+      "quantity": 1,
+      "unit_price": 3100.0,
+      "billing_unit": "month",
+      "annual_multiplier": 12,
+      "source_snippet": "Monthly lunch package, 4 lunches for up to 40 people - $3,100.00 per month"
+    }
+  ],
+  "fees": [],
+  "tax": {
+    "rate_percent": null,
+    "source_snippet": null,
+    "status": "not found"
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "Package term: 12 months."
+    },
+    "auto_renewal": {
+      "value": true,
+      "source_snippet": "The package renews automatically each year."
+    },
+    "renewal_notice_days": {
+      "value": 60,
+      "source_snippet": "Cancel at least 60 days before the renewal date to avoid renewal."
+    },
+    "price_escalator_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "late_fee_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "payment_terms_days": {
+      "value": 15,
+      "source_snippet": "Invoices are payable within 15 days."
+    }
+  },
+  "expected_first_year_pretax_total": 37200.0,
+  "traps": [
+    "auto_renewal",
+    "missing_item_beverages",
+    "monthly_package_units"
+  ]
+}
