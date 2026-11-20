@@ -108,7 +108,10 @@ def missing_item_flags(comparison: Comparison) -> list[RiskFlag]:
 
 def llm_flags(vendor: str, text: str, known: list[RiskFlag], llm_fn: LLMFn) -> list[RiskFlag]:
     known_txt = "; ".join(f.title for f in known) or "none"
-    result = llm_fn(LLM_PROMPT.format(known=known_txt, text=text), LLMRiskResult)
+    try:
+        result = llm_fn(LLM_PROMPT.format(known=known_txt, text=text), LLMRiskResult)
+    except Exception:
+        return []  # the rule-based flags still stand
     t = _norm(text)
     return [
         RiskFlag(vendor=vendor, rule="llm_review", severity=f.severity, title=f.title,
