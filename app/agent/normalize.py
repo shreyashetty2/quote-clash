@@ -51,7 +51,10 @@ def _ask_llm(resolve_fn: ResolveFn, name: str, unit: str | None, snippet: str) -
         "Answer null if the text does not say.\n"
         f"Line: {name}\nBilling unit: {unit}\nQuote text: {snippet}"
     )
-    return resolve_fn(prompt, UnitResolution).periods_per_year
+    try:
+        return resolve_fn(prompt, UnitResolution).periods_per_year
+    except Exception:
+        return None  # leave the line ambiguous rather than failing the whole run
 
 
 def _item_line(it: LineItem, resolve_fn: ResolveFn | None) -> NormalizedLine:
