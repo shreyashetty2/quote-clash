@@ -27,7 +27,7 @@ def test_static_js_served():
 
 def test_no_em_dashes_in_frontend():
     for name in ("index.html", "app.js"):
-        assert "—" not in client.get("/" if name == "index.html" else f"/static/{name}").text
+        assert "\u2014" not in client.get("/" if name == "index.html" else f"/static/{name}").text
 
 
 def test_every_sample_set_has_its_pdfs():
