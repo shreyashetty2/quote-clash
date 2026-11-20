@@ -4,9 +4,7 @@ Most tests use a fake LLM so they run offline. The live test calls the real mode
 and reports field-level accuracy; it is skipped unless GEMINI_API_KEY works.
 """
 
-import json
 import os
-from pathlib import Path
 
 import pytest
 
@@ -14,38 +12,7 @@ from app import llm
 from app.agent.extract import extract_quote, pdf_to_text
 from app.evaluation import Score, score_quote
 from app.schemas import LineItem, QuoteExtraction
-
-FIXTURES = Path(__file__).parent / "fixtures"
-PDFS = sorted(FIXTURES.glob("*.pdf"))
-
-
-def load_expected(pdf: Path) -> dict:
-    return json.loads(pdf.with_suffix(".expected.json").read_text())
-
-
-def oracle_llm(expected: dict):
-    """A fake LLM that answers exactly what the fixture says."""
-
-    def fn(prompt, schema):
-        terms = {
-            k: {"value": v["value"], "source_snippet": v["source_snippet"]}
-            for k, v in expected["terms"].items()
-        }
-        return schema.model_validate(
-            {
-                "vendor": expected["vendor"],
-                "line_items": expected["line_items"],
-                "fees": expected["fees"],
-                "tax": {
-                    "rate_percent": expected["tax"]["rate_percent"],
-                    "source_snippet": expected["tax"]["source_snippet"],
-                },
-                "terms": terms,
-            }
-        )
-
-    return fn
-
+from tests.helpers import PDFS, load_expected, oracle_llm
 
 def test_nine_fixtures_present():
     assert len(PDFS) == 9
