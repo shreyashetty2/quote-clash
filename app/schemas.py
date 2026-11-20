@@ -6,6 +6,8 @@ If a value is not in the quote, `value` is None and `source_snippet` is None
 
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 
@@ -23,7 +25,12 @@ class Fee(BaseModel):
     name: str
     amount: float | None = Field(None, description="Fee amount in dollars, as a plain number.")
     recurring: bool | None = Field(None, description="True if charged repeatedly, False if one time.")
-    billing_unit: str | None = Field(None, description="e.g. 'per month', 'per lunch'. Null if one time.")
+    billing_unit: str | None = Field(None, description="e.g. 'month', 'lunch'. Null if one time.")
+    quantity: float | None = Field(
+        None,
+        description="For a fee charged per occurrence, how many times it is charged over the quote period "
+        "if the quote states it (e.g. 48 lunches). Null otherwise.",
+    )
     source_snippet: str = Field(description="Exact text copied from the quote that states this fee.")
 
 
@@ -73,3 +80,105 @@ class Quote(QuoteExtraction):
     """Validated extraction. `warnings` lists anything dropped for lacking grounding."""
 
     warnings: list[str] = Field(default_factory=list)
+
+
+# ---------------------------------------------------------------- normalize
+
+Severity = Literal["high", "medium", "low"]
+
+
+class NormalizedLine(BaseModel):
+    kind: Literal["item", "fee"]
+    name: str
+    recurring: bool
+    annual_cost: float | None = Field(None, description="Cost over 12 months; None if the unit was ambiguous.")
+    basis: str = Field(description="How annual_cost was computed, e.g. '25 x $38.00 x 12'.")
+    ambiguous: bool = False
+    resolved_by: Literal["rule", "llm"] = "rule"
+    source_snippet: str
+
+
+class NormalizedQuote(BaseModel):
+    vendor: str
+    lines: list[NormalizedLine]
+    year1_total: float = Field(description="Sum of all lines with a known annual cost, before tax.")
+    recurring_annual: float
+    one_time_total: float
+    year2_total: float = Field(description="Recurring lines with the stated escalator applied, no one-time fees.")
+    tax_rate_percent: float | None = None
+    year1_total_with_tax: float | None = Field(None, description="None when no tax rate is stated.")
+    contract_months: int | None = None
+    complete: bool = Field(description="False if any line was ambiguous, so totals are partial.")
+    warnings: list[str] = Field(default_factory=list)
+
+
+class UnitResolution(BaseModel):
+    """LLM answer for an ambiguous billing unit."""
+
+    periods_per_year: float | None = Field(
+        None, description="How many times per year quantity x unit_price is charged. Null if truly unclear."
+    )
+
+
+# ------------------------------------------------------------------ compare
+
+class ComparisonRow(BaseModel):
+    concept: str
+    label: str
+    kind: Literal["item", "fee"]
+    known_concept: bool = True
+    costs: dict[str, float | None] = Field(description="Annual cost per vendor; None if the vendor omits it.")
+    snippets: dict[str, str | None]
+
+
+class MissingItem(BaseModel):
+    concept: str
+    label: str
+    vendor: str
+    estimate_low: float
+    estimate_high: float
+    included_by: list[str]
+
+
+class VendorSummary(BaseModel):
+    vendor: str
+    year1_total: float
+    year2_total: float
+    year1_total_with_tax: float | None = None
+    complete: bool
+    missing_concepts: list[str]
+    like_for_like_low: float
+    like_for_like_high: float
+    headline_rank: int
+    like_for_like_rank: int
+
+
+class Comparison(BaseModel):
+    vendors: list[VendorSummary]
+    rows: list[ComparisonRow]
+    missing: list[MissingItem]
+    cheapest_headline: str
+    cheapest_like_for_like: str
+
+
+# --------------------------------------------------------------- risk_check
+
+class RiskFlag(BaseModel):
+    vendor: str
+    rule: str
+    severity: Severity
+    title: str
+    explanation: str
+    source_snippet: str | None = None
+    source: Literal["rule", "llm"] = "rule"
+
+
+class LLMRiskFlag(BaseModel):
+    title: str
+    severity: Severity
+    explanation: str
+    source_snippet: str
+
+
+class LLMRiskResult(BaseModel):
+    flags: list[LLMRiskFlag] = Field(default_factory=list)
