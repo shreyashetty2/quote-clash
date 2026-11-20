@@ -27,6 +27,8 @@
       "recurring": true,
       "annual_multiplier": 12,
       "hidden_in_fine_print": true,
+      "billing_unit": "month",
+      "quantity": null,
       "source_snippet": "A fuel and equipment surcharge of $95.00 per month applies."
     }
   ],
