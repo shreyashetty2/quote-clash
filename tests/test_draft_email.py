@@ -35,7 +35,7 @@ def test_template_email_is_specific_and_uses_competing_quotes():
     assert "automatic renewal" in body
     assert "weekly lunch for 40 people" in body
     assert "Urban Plate" not in body and "Table & Fork" not in body  # competitors are not named
-    assert "—" not in body
+    assert "\u2014" not in body
 
 
 def test_asks_follow_the_quote():
