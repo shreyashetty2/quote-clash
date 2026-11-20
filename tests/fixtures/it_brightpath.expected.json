@@ -1,0 +1,70 @@
+{
+  "file": "it_brightpath.pdf",
+  "category": "it_support",
+  "vendor": "BrightPath Technologies",
+  "line_items": [
+    {
+      "description": "Helpdesk and device support",
+      "quantity": 25,
+      "unit_price": 480.0,
+      "billing_unit": "user per year",
+      "annual_multiplier": 1,
+      "source_snippet": "Helpdesk and device support - 25 users at $480.00 per user per year"
+    },
+    {
+      "description": "Infrastructure monitoring",
+      "quantity": 1,
+      "unit_price": 3600.0,
+      "billing_unit": "year",
+      "annual_multiplier": 1,
+      "source_snippet": "Infrastructure monitoring - flat $3,600.00 per year"
+    },
+    {
+      "description": "Backup and disaster recovery",
+      "quantity": 1,
+      "unit_price": 2000.0,
+      "billing_unit": "year",
+      "annual_multiplier": 1,
+      "source_snippet": "Backup and disaster recovery - flat $2,000.00 per year"
+    }
+  ],
+  "fees": [],
+  "tax": {
+    "rate_percent": 8.875,
+    "source_snippet": "Sales tax of 8.875% applies to all charges."
+  },
+  "terms": {
+    "contract_months": {
+      "value": 36,
+      "source_snippet": "This agreement has a minimum term of 36 months."
+    },
+    "auto_renewal": {
+      "value": true,
+      "source_snippet": "After the initial term this agreement renews automatically for successive 12 month terms."
+    },
+    "renewal_notice_days": {
+      "value": 90,
+      "source_snippet": "Written notice of non-renewal must be received at least 90 days before the term ends."
+    },
+    "price_escalator_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "late_fee_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "payment_terms_days": {
+      "value": 15,
+      "source_snippet": "Annual invoices are payable net 15 days."
+    }
+  },
+  "expected_first_year_pretax_total": 17600.0,
+  "traps": [
+    "auto_renewal",
+    "long_lock_in",
+    "annual_billing_units"
+  ]
+}
