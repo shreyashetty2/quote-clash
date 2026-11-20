@@ -1,0 +1,72 @@
+{
+  "file": "cleaning_sparkleworks.pdf",
+  "category": "office_cleaning",
+  "vendor": "SparkleWorks Cleaning Co.",
+  "line_items": [
+    {
+      "description": "Nightly office cleaning (3 visits per week, 52 weeks)",
+      "quantity": 156,
+      "unit_price": 185.0,
+      "billing_unit": "visit",
+      "annual_multiplier": 1,
+      "source_snippet": "Office cleaning, 3 visits per week for 52 weeks (156 visits) - $185.00 per visit"
+    },
+    {
+      "description": "Window cleaning (quarterly)",
+      "quantity": 4,
+      "unit_price": 420.0,
+      "billing_unit": "visit",
+      "annual_multiplier": 1,
+      "source_snippet": "Interior and exterior window cleaning, 4 visits per year - $420.00 per visit"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Initial deep clean",
+      "amount": 650.0,
+      "recurring": false,
+      "annual_multiplier": 1,
+      "hidden_in_fine_print": true,
+      "source_snippet": "A one-time initial deep clean of $650.00 will be added to the first invoice."
+    }
+  ],
+  "tax": {
+    "rate_percent": null,
+    "source_snippet": null,
+    "status": "not found"
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "Service period: 12 months."
+    },
+    "auto_renewal": {
+      "value": false,
+      "source_snippet": "This agreement ends at the end of the term and does not renew automatically."
+    },
+    "renewal_notice_days": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "price_escalator_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "late_fee_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "payment_terms_days": {
+      "value": 30,
+      "source_snippet": "Payment terms: net 30."
+    }
+  },
+  "expected_first_year_pretax_total": 31190.0,
+  "traps": [
+    "hidden_one_time_fee",
+    "per_visit_billing_units"
+  ]
+}
