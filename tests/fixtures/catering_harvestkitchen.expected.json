@@ -1,0 +1,71 @@
+{
+  "file": "catering_harvestkitchen.pdf",
+  "category": "catering",
+  "vendor": "Harvest Kitchen",
+  "line_items": [
+    {
+      "description": "Weekly team lunch",
+      "quantity": 1920,
+      "unit_price": 16.0,
+      "billing_unit": "person per lunch",
+      "annual_multiplier": 1,
+      "source_snippet": "Team lunch, 40 people x 48 lunches (1,920 meals) - $16.00 per person per lunch"
+    },
+    {
+      "description": "Beverage package",
+      "quantity": 1920,
+      "unit_price": 2.0,
+      "billing_unit": "person per lunch",
+      "annual_multiplier": 1,
+      "source_snippet": "Beverage package - $2.00 per person per lunch (1,920 servings)"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Equipment and setup",
+      "amount": 900.0,
+      "recurring": false,
+      "annual_multiplier": 1,
+      "hidden_in_fine_print": true,
+      "source_snippet": "Equipment and setup charge of $900.00 is billed once at program start."
+    }
+  ],
+  "tax": {
+    "rate_percent": null,
+    "source_snippet": null,
+    "status": "not found"
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "Initial term: 12 months."
+    },
+    "auto_renewal": {
+      "value": true,
+      "source_snippet": "This agreement renews automatically for another 12 months at the end of the term."
+    },
+    "renewal_notice_days": {
+      "value": 30,
+      "source_snippet": "Notice of cancellation must be given at least 30 days before renewal."
+    },
+    "price_escalator_percent": {
+      "value": 3.0,
+      "source_snippet": "Per-person prices increase by 3% each January."
+    },
+    "late_fee_percent": {
+      "value": 1.5,
+      "source_snippet": "Overdue invoices incur a 1.5% monthly late fee."
+    },
+    "payment_terms_days": {
+      "value": 15,
+      "source_snippet": "Payment is due 15 days from invoice."
+    }
+  },
+  "expected_first_year_pretax_total": 35460.0,
+  "traps": [
+    "hidden_setup_fee",
+    "auto_renewal",
+    "price_escalator",
+    "late_fee"
+  ]
+}
