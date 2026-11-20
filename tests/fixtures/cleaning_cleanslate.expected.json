@@ -1,0 +1,54 @@
+{
+  "file": "cleaning_cleanslate.pdf",
+  "category": "office_cleaning",
+  "vendor": "CleanSlate Facilities",
+  "line_items": [
+    {
+      "description": "Office cleaning program (3 visits per week)",
+      "quantity": 1,
+      "unit_price": 2150.0,
+      "billing_unit": "month",
+      "annual_multiplier": 12,
+      "source_snippet": "Office cleaning program, 3 visits per week - flat $2,150.00 per month"
+    }
+  ],
+  "fees": [],
+  "tax": {
+    "rate_percent": 8.875,
+    "source_snippet": "Sales tax of 8.875% will be added to each invoice."
+  },
+  "terms": {
+    "contract_months": {
+      "value": 24,
+      "source_snippet": "The term of this agreement is 24 months."
+    },
+    "auto_renewal": {
+      "value": true,
+      "source_snippet": "The agreement automatically renews for 12 month terms unless cancelled."
+    },
+    "renewal_notice_days": {
+      "value": 60,
+      "source_snippet": "Cancellation requires written notice at least 60 days before renewal."
+    },
+    "price_escalator_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "late_fee_percent": {
+      "value": 2.0,
+      "source_snippet": "A late fee of 2% per month applies to overdue balances."
+    },
+    "payment_terms_days": {
+      "value": 15,
+      "source_snippet": "Invoices are due net 15."
+    }
+  },
+  "expected_first_year_pretax_total": 25800.0,
+  "traps": [
+    "auto_renewal",
+    "long_lock_in",
+    "missing_item_window_cleaning",
+    "late_fee"
+  ]
+}
