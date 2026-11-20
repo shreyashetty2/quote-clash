@@ -1,0 +1,81 @@
+{
+  "file": "it_netsure.pdf",
+  "category": "it_support",
+  "vendor": "NetSure IT Services",
+  "line_items": [
+    {
+      "description": "Managed helpdesk support",
+      "quantity": 25,
+      "unit_price": 45.0,
+      "billing_unit": "user per month",
+      "annual_multiplier": 12,
+      "source_snippet": "Managed helpdesk support - 25 users at $45.00 per user per month"
+    },
+    {
+      "description": "Server and network monitoring",
+      "quantity": 1,
+      "unit_price": 350.0,
+      "billing_unit": "month",
+      "annual_multiplier": 12,
+      "source_snippet": "Server and network monitoring - flat $350.00 per month"
+    },
+    {
+      "description": "Cloud backup and recovery",
+      "quantity": 1,
+      "unit_price": 180.0,
+      "billing_unit": "month",
+      "annual_multiplier": 12,
+      "source_snippet": "Cloud backup and recovery - flat $180.00 per month"
+    }
+  ],
+  "fees": [
+    {
+      "name": "Onboarding and network setup",
+      "amount": 1500.0,
+      "recurring": false,
+      "annual_multiplier": 1,
+      "hidden_in_fine_print": true,
+      "source_snippet": "Onboarding and network setup fee of $1,500.00 is due one time with the first invoice."
+    }
+  ],
+  "tax": {
+    "rate_percent": null,
+    "source_snippet": null,
+    "status": "not found"
+  },
+  "terms": {
+    "contract_months": {
+      "value": 12,
+      "source_snippet": "The initial term of this agreement is 12 months."
+    },
+    "auto_renewal": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "renewal_notice_days": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "price_escalator_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "late_fee_percent": {
+      "value": null,
+      "source_snippet": null,
+      "status": "not found"
+    },
+    "payment_terms_days": {
+      "value": 30,
+      "source_snippet": "Invoices are payable net 30 days."
+    }
+  },
+  "expected_first_year_pretax_total": 21360.0,
+  "traps": [
+    "hidden_setup_fee",
+    "monthly_billing_units"
+  ]
+}
